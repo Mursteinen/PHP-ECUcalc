@@ -35,6 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (strpos($sw_version_result, 'Error') !== false) {
                 $sw_version_result = "Error reading SW version.";
             } else {
+                // Store the SW version result in the session
+                $_SESSION['sw_version_result'] = $sw_version_result;
+
                 switch ($sw_version_result) {
                     case '351210':
                     case '351761':
@@ -64,119 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SW Version Reader</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-        .unknown-version {
-            color: #721c24;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 5px;
-            padding: 20px;
-            font-weight: bold;
-            font-size: 1.2em;
-            text-align: center;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-        .container {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            padding: 20px;
-            width: 400px;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        h1 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        h2, h3 {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 16px;
-            color: #333;
-        }
-        input[type="file"] {
-            display: block;
-            margin: 10px 0 20px;
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .checkbox-group {
-            margin-bottom: 20px;
-        }
-        .checkbox-group input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        .checkbox-group label {
-            display: inline-block;
-            font-size: 16px;
-            color: #333;
-        }
-        input[type="submit"] {
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-        .supported {
-            color: green;
-            font-weight: bold;
-        }
-        .spoiler {
-            margin-top: 20px;
-            width: 300px;
-            text-align: center;
-        }
-        .spoiler-content {
-            display: none;
-            background-color: #f8f9fa;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            margin-top: 10px;
-        }
-        .spoiler-button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .spoiler-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -185,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>BMW EDC15C4</h1>
         <h2>SW Version: <?php echo htmlspecialchars($sw_version_result); ?></h2>
         <h3>File selected is: <?php echo htmlspecialchars(basename($filePath)); ?></h3>
-        <form action="./<?php echo htmlspecialchars($sw_version_result); ?>.php" method="post">
+        <form action="./solutions.php" method="post">
             <div class="checkbox-group">
                 <label>Select Solutions:</label><br>
                 <input type="checkbox" id="immo" name="solutions[]" value="IMMO" <?php echo in_array('IMMO', $selectedSolutions) ? 'checked' : ''; ?>>
@@ -205,11 +96,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="spoiler">
         <button class="spoiler-button" onclick="toggleSpoiler()">Show Supported SW Versions</button>
         <div class="spoiler-content">
-            <ul>
-                <li class="supported">351210</li>
-                <li class="supported">351761</li>
-                <!-- Add more supported versions here with class="supported" -->
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Supported SW Versions</th>
+						<th>EGR</th>
+						<th>DPF</th>
+						<th>IMMO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="supported">351210</td>
+						<td class="supported"></td>
+						<td class="supported"></td>
+						<td class="supported">X</td>
+                    </tr>
+                    <tr>
+                        <td class="supported">351761</td>
+						<td class="supported"></td>
+						<td class="supported"></td>
+						<td class="supported">X</td>
+                    </tr>
+                    <!-- Add more supported versions here with class="supported" -->
+                </tbody>
+            </table>
         </div>
     </div>
 <?php endif; ?>

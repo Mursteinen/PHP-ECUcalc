@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creator Tool</title>
+    <link rel="stylesheet" href="combined_styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Creator Tool</h1>
+        <form action="compare.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file1">Select First File:</label>
+                <input type="file" name="file1" id="file1" required>
+            </div>
+            <div class="form-group">
+                <label for="file2">Select Second File:</label>
+                <input type="file" name="file2" id="file2" required>
+            </div>
+            <div class="form-group">
+                <label for="ECU_type">Select ECU:</label>
+                <select name="ECU_type" id="ECU_type" required>
+				    <option value="EDC15C4">EDC15C4</option>
+                    <option value="EDC17">EDC17</option>
+                </select>
+            </div>
+            <input type="submit" value="Compare Files">
+        </form>
+    </div>
+</body>
+</html>
