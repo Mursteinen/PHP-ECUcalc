@@ -16,10 +16,11 @@ Software version is read and file selected is printed.
 
 
 Choose solution you want to apply (I selected all solutions listed)
+Your result is calculated and you will get warning about missing solutions and what solution is actually applied.
+
 
 ![image](https://github.com/user-attachments/assets/abf1b074-3477-4503-94a7-f7b67f51f136)
 
-Your result is calculated and you will get warning about missing solutions and what solution is actually applied.
 
 
 
