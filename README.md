@@ -22,3 +22,7 @@ Choose solution you want to apply (I selected all solutions listed)
 Your result is calculated and you will get warning about missing solutions and what solution is actually applied.
 
 
+
+
+Creator tool
+![This is the File comparison tool or creator tool](image-1.png)
