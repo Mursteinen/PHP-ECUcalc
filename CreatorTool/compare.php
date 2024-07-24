@@ -48,7 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Set offset and length based on selected ECU type
     $ecu_specs = [
         'EDC17' => [0x1A, 18],
-        'EDC15C4' => [0x7BFB4, 6]
+        'EDC15C4' => [0x7BFB4, 6],
+        'BMW_EDC16' => [0x170038, 6]
+
     ];
 
     if (!isset($ecu_specs[$ECU_type])) {
