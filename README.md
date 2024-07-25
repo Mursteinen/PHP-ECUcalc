@@ -26,4 +26,4 @@ Your result is calculated and you will get warning about missing solutions and w
 
 
 Creator tool
-![This is the File comparison tool or creator tool](image-1.png)
+![This is the File comparison tool or creator tool](image.png)
